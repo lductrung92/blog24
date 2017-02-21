@@ -40,7 +40,7 @@
                                         <label class="col-md-4 control-label" for="selectbasic">Loại tin</label>
                                         <div class="col-md-4">
                                             <select class="form-control selectpicker" name="selParent">
-                                                <option value="1">Chọn loại tin</option>
+                                                <option value="0">Chọn loại tin</option>
                                                 {{ showParentName($cateName, $cate->id) }}
                                             </select>
                                         </div>

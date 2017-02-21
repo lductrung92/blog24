@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+   /*scroll menu*/
    $(window).bind('scroll', function() {
    var navHeight = $( window ).height() - 500;
 		 if ($(window).scrollTop() > navHeight) {
@@ -8,8 +10,20 @@ $(document).ready(function(){
 			 $('.navigation-agileits').removeClass('navbar-fixed-top');
 		 }
 	});
+
+   /*click menu icon*/
+   var $i = 0;
+   $("#caret").click(function() {	
+   		if($i % 2 == 0) {
+   			$("#icon-caret").removeClass('fa-caret-right').addClass('fa-caret-down');
+   		} else {
+   			$("#icon-caret").removeClass('fa-caret-down').addClass('fa-caret-right');
+   		}
+   		$i++;
+   });
 });
 
+/*slider*/
 (function( $ ) {
 
     //Function to animate slider captions 
