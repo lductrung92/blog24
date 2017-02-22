@@ -17,6 +17,18 @@
             </li>
 
             <li>
+                <a href="admin/cate_group/list"><i class="glyphicon glyphicon-list"></i> Category Group<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/cate_group/list"><i class="glyphicon glyphicon-list-alt"></i> List</a>
+                    </li>
+                    <li>
+                        <a href="admin/cate_group/insert"><i class="glyphicon glyphicon-floppy-save  "></i> Insert</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
                 <a href="admin/category/list"><i class="glyphicon glyphicon-list"></i> Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

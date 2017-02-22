@@ -33,21 +33,21 @@
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
-                                    <th>Nhóm</th>
-                                    <th>Tên loại</th>
+                                    <th>Tên nhóm loại</th>
+                                    <th>Mô tả</th>
                                     <th>Keywords</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($cates as $cate)
+                                @foreach($cateGs as $cateG)
                                     <tr class="odd gradeX">
-                                        <td>{{ $cate->cateGroup->name }}</td>
-                                        <td>{{ $cate->name }}</td>
-                                        <td>{{ $cate->keywords }}</td>
+                                        <td>{{ $cateG->name }}</td>
+                                        <td>{{ $cateG->description }}</td>
+                                        <td>{{ $cateG->keywords }}</td>
                                         <td style="text-align: center; border-right: 0">
-                                            <a href="admin/category/update/{{ $cate->id }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                            <a href="admin/category/delete/{{ $cate->id }}" style="color: red"><span class="glyphicon glyphicon-trash"></span></a>
+                                            <a href="admin/cate_group/update/{{ $cateG->id }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="admin/cate_group/delete/{{ $cateG->id }}" style="color: red"><span class="glyphicon glyphicon-trash"></span></a>
                                         </td>
                                       
                                     </tr>

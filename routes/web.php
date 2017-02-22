@@ -11,14 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home.base.base');
-});
-
+Route::get('/', ['as' => 'home.base.home', 'uses' => 'HomeController@home']);
+Route::get('ajax/getNew/{id}', 'AjaxController@getNew');
 
 Route::group(['prefix' => 'admin'], function() {
 	Route::get('dashboard', function() {
 		return view('admin.dashboard');
+	});
+
+	Route::group(['prefix' => 'cate_group'], function() {
+		Route::get('list', ['as' => 'admin.cate_group.getList', 'uses' => 'CateGroupController@getList']);
+		Route::get('insert', ['as' => 'admin.cate_group.getInsert', 'uses' => 'CateGroupController@getInsert']);
+		Route::post('insert', ['as' => 'admin.cate_group.postInsert', 'uses' => 'CateGroupController@postInsert']);
+		Route::get('update/{id}', ['as' => 'admin.cate_group.getUpdate', 'uses' => 'CateGroupController@getUpdate']);
+		Route::post('update/{id}', ['as' => 'admin.cate_group.postUpdate', 'uses' => 'CateGroupController@postUpdate']);
+		Route::get('delete/{id}', ['as' => 'admin.cate_group.getDelete', 'uses' => 'CateGroupController@getDelete']);
 	});
 
 	Route::group(['prefix' => 'category'], function() {
@@ -38,5 +45,8 @@ Route::group(['prefix' => 'admin'], function() {
 		Route::post('update/{id}', ['as' => 'admin.news.postUpdate', 'uses' => 'NewsController@postUpdate']);
 		Route::get('delete/{id}', ['as' => 'admin.news.getDelete', 'uses' => 'NewsController@getDelete']);
 	});
+
+	Route::get('ajax/{id}', 'AjaxController@selCate');
+	
 
 });

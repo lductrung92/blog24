@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnAliasTableCategories extends Migration
+class AddColumnStatusTableCateGroups extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnAliasTableCategories extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('alias');
+        Schema::table('cate_groups', function (Blueprint $table) {
+            $table->tinyInteger('status');
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumnAliasTableCategories extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('alias');
+        Schema::table('cate_groups', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 }

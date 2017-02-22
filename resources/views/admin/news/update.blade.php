@@ -35,13 +35,22 @@ Cập nhật tin tức
                             <form class="form-horizontal" action="admin/news/update/{{ $news->id }}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="selectbasic">Nhóm loại tin</label>
+                                        <div class="col-md-4">
+                                            <select class="form-control selectpicker" id="selParentG">
+                                                <option value="0">Chọn nhóm loại tin</option>
+                                                {{ showParentName($cateGs, $news->category->cateGroup->id) }}
+                                            </select>
+                                        </div>
+                                    </div>
                                     <!-- Select Basic -->
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="selectbasic">Loại tin</label>
                                         <div class="col-md-4">
-                                            <select class="form-control selectpicker" name="selParent">
+                                            <select class="form-control" name="selParent" id="sel">
                                                 <option value="0">Chọn loại tin</option>
-                                                {{ showParentName($cateName, $news->category->id) }}
+                                                {{ showParentName($cates, $news->category->id) }}
                                             </select>
                                         </div>
                                     </div>
@@ -59,12 +68,7 @@ Cập nhật tin tức
                                             <input id="txtSource" name="txtSource" placeholder="Nhập vào nguồn trang" class="form-control input-md" required="" type="text" value="{{ $news->source }}">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="Nom22">Keywords</label>  
-                                        <div class="col-md-4">
-                                            <input id="txtKeyWords" name="txtKeyWords" placeholder="Nhập vào keywords" class="form-control input-md" required="" type="text" value="{{ $news->keywords }}">
-                                        </div>
-                                    </div>
+                                   
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="Nom22">Ảnh đại diện</label>  
                                         <div class="col-md-4">
@@ -118,7 +122,16 @@ Cập nhật tin tức
     CKEDITOR.replace('ckeditor-1');
     $(document).ready(function() {
         $(".file-caption").html("Upload Image");
+        $("#selParentG").change(function() {
+            var $id = $("#selParentG").val();            
+            $.get('admin/ajax/' + $id, function(data) {
+                
+                $("#sel").html(data);
+                
+            });
+        });
     }); 
+    
 </script>
 <script src="js/validate.js" type="text/javascript"></script>
 

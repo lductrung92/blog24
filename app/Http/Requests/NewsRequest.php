@@ -26,7 +26,7 @@ class NewsRequest extends FormRequest
         $postId = $this->route()->parameter('id');
         return [
             'txtTitle' => 'required|unique:news,title,'.$postId,
-            'txtKeyWords' => 'required',
+            
             'txtSource' => 'required',
             'txtDes' => 'required',
             'txtContent' => 'required'
@@ -38,7 +38,7 @@ class NewsRequest extends FormRequest
         return [
             'txtName.required' => 'Bạn chưa nhập tiêu đề bài viết',
             'txtName.unique' => 'Tiêu đề bài viết đã tồn tại',
-            'txtKeyWords.required' => 'Bạn chưa nhập keywords',
+            
             'txtDes.required' => 'Bạn chưa nhập mô tả',
             'txtSource.required' => 'Bạn chưa nhập nguồn trang',
             'txtContent.required' => 'Bạn chưa nhập nội dung'

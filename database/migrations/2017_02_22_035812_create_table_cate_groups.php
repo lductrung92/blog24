@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnKeywordsTableNews extends Migration
+class CreateTableCateGroups extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class AddColumnKeywordsTableNews extends Migration
      */
     public function up()
     {
-        Schema::table('news', function (Blueprint $table) {
+        Schema::create('cate_groups', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('alias');
             $table->string('keywords');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ class AddColumnKeywordsTableNews extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->dropColumn('keywords');
-        });
+        Schema::dropIfExists('cate_groups');
     }
 }

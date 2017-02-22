@@ -41,7 +41,7 @@
                                         <div class="col-md-4">
                                             <select class="form-control selectpicker" name="selParent">
                                                 <option value="0">Chọn loại tin</option>
-                                                {{ showParentName($cateName, $cate->id) }}
+                                                {{ showParentName($cateGs, $cate->id) }}
                                             </select>
                                         </div>
                                     </div>

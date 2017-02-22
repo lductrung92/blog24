@@ -1,7 +1,7 @@
 @extends('admin.base.base')
 
 @section('title')
-	Thêm loại tin
+	Thêm nhóm loại tin
 @endsection
 
 @section('css')
@@ -23,7 +23,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Thêm loại tin
+                        Thêm nhóm loại tin
                     </div>
                    
                     {{ showError($errors->all()) }}
@@ -31,25 +31,15 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form class="form-horizontal" action="admin/category/insert" method="post">
+                                <form class="form-horizontal" action="admin/cate_group/insert" method="post">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <fieldset>
                                     <!-- Select Basic -->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="selectbasic">Loại tin</label>
-                                        <div class="col-md-4">
-                                            <select class="form-control selectpicker" name="selParent">
-                                                <option value="0">Chọn loại tin</option>
-                                                {{ showParentName($cateGs, null) }}
-                                            </select>
-                                        </div>
-                                    </div>
-
                                     <!-- Text input-->
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="Nom22">Tên loại tin</label>  
+                                        <label class="col-md-4 control-label" for="Nom22">Tên nhóm loại tin</label>  
                                         <div class="col-md-4">
-                                            <input id="txtName" name="txtName" placeholder="Nhập vào tên loại tin" class="form-control input-md" required="" type="text">
+                                            <input id="txtName" name="txtName" placeholder="Nhập vào tên nhóm loại tin" class="form-control input-md" required="" type="text">
                                         </div>
                                     </div>
                                     <div class="form-group">
