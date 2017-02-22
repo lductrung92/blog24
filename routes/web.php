@@ -11,7 +11,18 @@
 |
 */
 
-Route::get('/', ['as' => 'home.base.home', 'uses' => 'HomeController@home']);
+View::share('cateGNames', App\CateGroup::where('status', 0)->get());
+View::share('cateGL', App\CateGroup::where('status', 1)->get());
+
+
+
+
+Route::group(['prefix' => '/'], function() {
+	Route::get('/', ['as' => 'home.base.home', 'uses' => 'HomeController@home']);
+	Route::get('/{cateID}', 'HomeController@getCate');
+	Route::get('/{cateID}/{id}', 'HomeController@details');
+});
+
 Route::get('ajax/getNew/{id}', 'AjaxController@getNew');
 
 Route::group(['prefix' => 'admin'], function() {

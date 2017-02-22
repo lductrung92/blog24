@@ -30,6 +30,7 @@ class NewsController extends Controller
 		$news->description = $request->txtDes;
 		$news->content = $request->txtContent;
 		$news->alias = changeTitle($request->txtTitle);
+		$news->status = $request->checkStatus == 'on' ? 1 : 0;
 		
 		if($request->hasFile('fImage'))
 		{
@@ -58,7 +59,7 @@ class NewsController extends Controller
 		$news->description = $request->txtDes;
 		$news->content = $request->txtContent;
 		$news->alias = changeTitle($request->txtTitle);
-		
+		$news->status = $request->checkStatus == 'on' ? 1 : 0;
 		if($request->hasFile('fImage'))
 		{
 			$news->image = moveFile($request, 'fImage', true, $news->image);

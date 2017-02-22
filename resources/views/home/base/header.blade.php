@@ -96,7 +96,7 @@
 
                             @foreach($cateGL as $item)
                             <li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-mega-menu menu-item-144">
-                                <a href="https://demo.tagdiv.com/newspaper_tech/category/tagdiv-mobile/"
+                                <a href="{{ $item->id }}"
                                    class="sf-with-ul">{{ $item->name }}<i class="td-icon-menu-down"></i></a>
                                 <ul class="sub-menu" style="display: none; float: none; width: 20em;">
                                     <li class="menu-item-0" style="white-space: normal; float: left; width: 100%;">
@@ -161,7 +161,7 @@
 
                             @foreach($cateGNames as $cateGName)
                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-mega-menu menu-item-144">
-                                    <a href="#">{{ $cateGName->name }}</a>
+                                    <a href="{{ $cateGName->id }}">{{ $cateGName->name }}</a>
 
                                     <ul class=sub-menu>
                                         <li>

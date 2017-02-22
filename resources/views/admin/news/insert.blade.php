@@ -72,13 +72,19 @@ Thêm tin tức
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="Nom22">Ảnh đại diện</label>  
                                         <div class="col-md-4">
-                                            <input id="input-1" type="file" class="file" name="fImage">
+                                            <input type="file" class="file" name="fImage">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="Nom22">Mô tả</label>
                                         <div class="col-md-4">
                                             <textarea class="form-control" rows="5" id="txtDes" name="txtDes" placeholder="Nhập vào mô tả"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="Nom22">Nổi bật</label>
+                                        <div class="col-md-4">
+                                            <input id="input-1" type="checkbox" name="checkStatus">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -116,6 +122,7 @@ Thêm tin tức
 
 @section('script')
 <script src="bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="bootstrap-checkbox/dist/js/bootstrap-checkbox.min.js"></script>
 <script src="bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
@@ -129,6 +136,7 @@ Thêm tin tức
                 
             });
         });
+        $('#input-1').checkboxpicker();
     }); 
 </script>
 <script src="js/validate.js" type="text/javascript"></script>

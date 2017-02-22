@@ -12,8 +12,8 @@
     <title>@yield('title')</title>
     
     <!-- Bootstrap Core CSS -->
-    <link href="sb-admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="sb-admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     
@@ -55,7 +55,7 @@
     <script src="sb-admin/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="sb-admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
 
     
 

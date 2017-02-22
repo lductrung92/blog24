@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Trang chủ</title>
+    <title>@yield('title')</title>
     <meta charset=UTF-8/>
     <base href="{{ asset('/') }}"/>
 
@@ -53,9 +53,9 @@
         <div class="td-main-content-wrap td-main-page-wrap">
             <div class="td-container td-pb-article-list">
                 <div class=td-pb-row>
-
+                    
                     {{--Content left--}}
-                    @include('home.base.content-left')
+                    @yield('content')
                     {{--Content right--}}
                     @include('home.base.content-right')
                 </div>
@@ -68,6 +68,6 @@
 
 <script type='text/javascript' src='js/tagdiv_theme.min.js'></script>
 
-
+    
 </body>
 </html>

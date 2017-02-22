@@ -24,6 +24,7 @@ class CateGroupController extends Controller
     	$cateG->keywords = $request->txtKeyWords;
     	$cateG->description = $request->txtDes;
     	$cateG->alias = changeTitle($request->txtName);
+        $cateG->status = $request->checkStatus == 'on' ? 1 : 0;
 
     	$cateG->save();
 
@@ -42,6 +43,7 @@ class CateGroupController extends Controller
     	$cateG->keywords = $request->txtKeyWords;
     	$cateG->description = $request->txtDes;
     	$cateG->alias = changeTitle($request->txtName);
+        $cateG->status = $request->checkStatus == 'on' ? 1 : 0;
 
     	$cateG->update();
 

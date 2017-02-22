@@ -82,6 +82,12 @@ Cập nhật tin tức
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-4 control-label" for="Nom22">Nổi bật</label>
+                                        <div class="col-md-4">
+                                            <input id="input-1" type="checkbox" name="checkStatus">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="col-lg-12">
                                             <textarea class="form-control" rows="10" id="ckeditor-1" name="txtContent">{{ $news->content }}</textarea>
                                         </div>

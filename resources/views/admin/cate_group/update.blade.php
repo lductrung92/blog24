@@ -56,7 +56,12 @@
                                             <textarea class="form-control" rows="5" id="txtDes" name="txtDes" placeholder="Nhập vào mô tả">{{ $cateG->description }}</textarea>
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="Nom22">Nổi bật</label>
+                                        <div class="col-md-4">
+                                            <input id="input-1" type="checkbox" name="checkStatus">
+                                        </div>
+                                    </div>
                                     <!-- Button -->
                                     <div class="form-group">
                                       <label class="col-md-4 control-label" for="send"></label>
@@ -87,6 +92,10 @@
 @section('script')
   <script src="bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
   <script src="js/validate.js" type="text/javascript"></script>
-  
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#input-1').checkboxpicker();
+    }); 
+  </script>
 @endsection
 
