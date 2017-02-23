@@ -96,8 +96,7 @@
 
                             @foreach($cateGL as $item)
                             <li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-mega-menu menu-item-144">
-                                <a href="{{ $item->id }}"
-                                   class="sf-with-ul">{{ $item->name }}<i class="td-icon-menu-down"></i></a>
+                                <a style="cursor: pointer;" class="sf-with-ul">{{ $item->name }}<i class="td-icon-menu-down"></i></a>
                                 <ul class="sub-menu" style="display: none; float: none; width: 20em;">
                                     <li class="menu-item-0" style="white-space: normal; float: left; width: 100%;">
                                         <div class="td-container-border">
@@ -121,6 +120,7 @@
                                                             @endforeach
                                                         </div>
                                                     </div>
+
                                                     <div id="td_uid_1_58ace76cb3183"
                                                          class="td_block_inner td_animated_xlong td_fadeInDown"
                                                          style="height: auto;">
@@ -131,13 +131,14 @@
                                                                         <div class="td_module_mega_menu td_mod_mega_menu">
                                                                             <div class="td-module-image">
                                                                                 <div class="td-module-thumb">
-                                                                                    <a href="#"></a>
+                                                                                    <a href="{{ $category->alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html">
                                                                                         <img width="218" height="150" class="entry-thumb" src="upload/news/{{ $item_news->image }}" sizes="(max-width: 218px) 100vw, 218px">
-
+                                                                                    </a>
+                                                                                    <a href="{{ $item_news->category->alias }}" class=td-post-category id="view">{{ $item_news->category->name }}</a>
                                                                                 </div>
                                                                                 <div class="item-details">
                                                                                     <h3 class="entry-title td-module-title">
-                                                                                        <a href="#" rel="bookmark">
+                                                                                        <a href="{{ $category->alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel="bookmark">
                                                                                             {{ $item_news->title }}
                                                                                         </a>
                                                                                     </h3>
@@ -145,11 +146,15 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
                                                                 @endforeach
                                                             @endforeach
-
                                                         </div>
                                                     </div>
+                                                    
+                                                    
+
+                                                    
                                                     <div class="clearfix"></div>
                                                 </div>
                                             </div>
@@ -161,8 +166,7 @@
 
                             @foreach($cateGNames as $cateGName)
                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-mega-menu menu-item-144">
-                                    <a href="{{ $cateGName->id }}">{{ $cateGName->name }}</a>
-
+                                    <a style="cursor: pointer;">{{ $cateGName->name }}</a>
                                     <ul class=sub-menu>
                                         <li>
                                             <div class=td-container-border>
@@ -180,23 +184,17 @@
                                                                                     <div class="td_module_mega_menu td_mod_mega_menu">
                                                                                         <div class=td-module-image>
                                                                                             <div class=td-module-thumb>
-                                                                                                <a href="#" rel=bookmark
+                                                                                                <a href="{{ $category->alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel=bookmark
                                                                                                    title="{{ $item_news->title }}">
-                                                                                                    <img width=218
-                                                                                                         height=150
-
-                                                                                                         src="upload/news/{{ $item_news->image }}"
-                                                                                                         sizes="(max-width: 218px) 100vw, 218px"
-                                                                                                         alt=""
-                                                                                                         title="#"/>
+                                                                                                    <img width=218 height=150 src="upload/news/{{ $item_news->image }}" sizes="(max-width: 218px) 100vw, 218px"
+                                                                                                    title="{{ $item_news->title }}"/>
                                                                                                 </a>
                                                                                             </div>
-                                                                                            <a href="#"
-                                                                                               class=td-post-category>Reviews</a>
+                                                                                            
                                                                                         </div>
                                                                                         <div class=item-details>
                                                                                             <h3 class="entry-title td-module-title">
-                                                                                                <a href="#" rel=bookmark
+                                                                                                <a href="{{ $category->alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel=bookmark
                                                                                                    title="{{ $item_news->title }}">
                                                                                                     {{ $item_news->title }}
                                                                                                 </a>

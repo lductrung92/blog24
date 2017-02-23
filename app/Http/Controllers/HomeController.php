@@ -14,12 +14,17 @@ class HomeController extends Controller
     	return view('home.index', ['news' => $news]);
     }
 
-    public function getCate($cateID) {
-    	$newCates = News::where('category_id', $cateID)->paginate(2);
-    	return view('home.catedetail', ['newCates' => $newCates]);
+    public function getCate($aliasCate) {
+        $cateID = Category::select('id')->where('alias', $aliasCate)->get();
+        foreach ($cateID as $itemCate) {
+            $newCates = News::where('category_id', $itemCate->id)->paginate(9);
+        }
+
+        return view('home.cate_detail', ['newCates' => $newCates]);
+
     }
 
-    public function details($cateID, $id) {
+    public function details($aliasCate, $id) {
         $newDetail = News::where('id', $id)->get();
     	return view('home.detail', ['newDetail' => $newDetail]);
     }

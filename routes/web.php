@@ -26,8 +26,8 @@ View::share('enters', \App\News::where('category_id', 4)->orderBy('id', 'DESC')-
 
 Route::group(['prefix' => '/'], function() {
 	Route::get('/', ['as' => 'home.base.home', 'uses' => 'HomeController@home']);
-	Route::get('/{alias}', 'HomeController@getCate');
-	Route::get('{cateID}/{id}', 'HomeController@details');
+	Route::get('{aliasCate}', 'HomeController@getCate');
+	Route::get('{aliasCate}/{id}/{aliasNew}.html', 'HomeController@details');
 	Route::get('/ajaxSearch', 'AjaxController@search');
 });
 
