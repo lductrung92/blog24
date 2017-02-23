@@ -13,20 +13,28 @@
 
 View::share('cateGNames', App\CateGroup::where('status', 0)->get());
 View::share('cateGL', App\CateGroup::where('status', 1)->get());
+View::share('cateGs', App\CateGroup::all());
 
+/*Cong nghe*/
 
+View::share('tnls', App\News::where('category_id', 3)->orderBy('id', 'DESC')->skip(0)->take(3)->get());
+
+/*footer*/
+View::share('newforDates', App\News::orderBy('id', 'DESC')->skip(0)->take(3)->get());
+View::share('enters', \App\News::where('category_id', 4)->orderBy('id', 'DESC')->skip(0)->take(3)->get());
 
 
 Route::group(['prefix' => '/'], function() {
 	Route::get('/', ['as' => 'home.base.home', 'uses' => 'HomeController@home']);
-	Route::get('/{cateID}', 'HomeController@getCate');
-	Route::get('/{cateID}/{id}', 'HomeController@details');
+	Route::get('/{alias}', 'HomeController@getCate');
+	Route::get('{cateID}/{id}', 'HomeController@details');
+	Route::get('/ajaxSearch', 'AjaxController@search');
 });
 
 Route::get('ajax/getNew/{id}', 'AjaxController@getNew');
 
 Route::group(['prefix' => 'admin'], function() {
-	Route::get('dashboard', function() {
+	Route::get('dashboard/index', function() {
 		return view('admin.dashboard');
 	});
 

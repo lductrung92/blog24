@@ -1,6 +1,8 @@
 @extends('home.base.base')
 @section('title')
-	Trang chủ
+	@foreach($newCates as $item)
+        {{ $item->category->cateGroup->name }}
+    @endforeach
 @endsection
 
 @section('content')

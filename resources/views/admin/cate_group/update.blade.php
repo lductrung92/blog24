@@ -92,6 +92,7 @@
 @section('script')
   <script src="bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
   <script src="js/validate.js" type="text/javascript"></script>
+  <script src="bootstrap-checkbox/dist/js/bootstrap-checkbox.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
         $('#input-1').checkboxpicker();

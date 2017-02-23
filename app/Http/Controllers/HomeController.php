@@ -10,7 +10,7 @@ use App\News;
 class HomeController extends Controller
 {
     public function home() {
-        $news = News::where('status', 1)->paginate(2);
+        $news = News::where('status', 1)->paginate(9);
     	return view('home.index', ['news' => $news]);
     }
 
@@ -20,6 +20,7 @@ class HomeController extends Controller
     }
 
     public function details($cateID, $id) {
-    	return view('home.detail');
+        $newDetail = News::where('id', $id)->get();
+    	return view('home.detail', ['newDetail' => $newDetail]);
     }
 }

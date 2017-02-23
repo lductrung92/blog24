@@ -286,7 +286,7 @@
                                 <div role=search class=td-head-form-search-wrap>
                                     <input id=td-header-search type=text value="" name=s autocomplete=off/><input
                                             class="wpb_button wpb_btn-inverse btn" type=submit
-                                            id=td-header-search-top value=Search/>
+                                            id="td-header-search-top" value=Search>
                                 </div>
                             </form>
                             <div id=td-aj-search></div>

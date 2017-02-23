@@ -72,7 +72,7 @@ Cập nhật tin tức
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="Nom22">Ảnh đại diện</label>  
                                         <div class="col-md-4">
-                                            <input id="input-1" type="file" class="file" name="fImage">
+                                            <input type="file" class="file" name="fImage">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -122,12 +122,12 @@ Cập nhật tin tức
 
 @section('script')
 <script src="bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="bootstrap-checkbox/dist/js/bootstrap-checkbox.min.js"></script>
 <script src="bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
     CKEDITOR.replace('ckeditor-1');
     $(document).ready(function() {
-        $(".file-caption").html("Upload Image");
         $("#selParentG").change(function() {
             var $id = $("#selParentG").val();            
             $.get('admin/ajax/' + $id, function(data) {
@@ -136,8 +136,8 @@ Cập nhật tin tức
                 
             });
         });
+        $('#input-1').checkboxpicker();
     }); 
-    
 </script>
 <script src="js/validate.js" type="text/javascript"></script>
 

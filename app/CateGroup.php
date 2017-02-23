@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CateGroup extends Model
 {
     protected $table = 'cate_groups';
-    protected $fillable = ['name', 'alias', 'keywords', 'description'];
+    protected $fillable = ['name', 'alias', 'keywords', 'description', 'status'];
 
     public function categories() {
     	return $this->hasMany('App\Category');
