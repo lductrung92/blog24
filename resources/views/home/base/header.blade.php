@@ -106,7 +106,7 @@
                                                     <div class="td_mega_menu_sub_cats">
                                                         <div style="text-transform:uppercase">
                                                             @foreach($item->categories as $category)
-                                                            <a id="{{ $category->name }}" href="#{{ $category->alias }}">
+                                                            <a id="{{ $category->name }}" style="cursor: pointer;">
                                                                 {{ $category->name }}
                                                             </a>
                                                                 <script>
