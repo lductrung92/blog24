@@ -114,8 +114,7 @@ function moveFile($request, $fileName, $unlink = false, $fileDel)
     }
     if($unlink)
     	unlink("upload/news/" . $fileDel);
-    $file->move("upload/news/", $image);
-    
+    Image::make($file->getRealPath())->resize(660, 440)->save(public_path('upload/news/' . $image));
     return $image;
 }
 

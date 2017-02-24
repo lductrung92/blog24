@@ -17,13 +17,13 @@
                         <div class=td-block-span12>
                             <div class="td_module_6 td_module_wrap td-animation-stack">
                                 <div class=td-module-thumb>
-                                <a href="{{ $item->category->alias }}/{{ $item->id }}/{{ $item->alias }}" title="{{ $item->title }}">
+                                <a href="{{ $item->category->alias }}/{{ $item->id }}/{{ $item->alias }}.html" title="{{ $item->title }}">
                                     <img width=100 height=70 class="entry-thumb" src="upload/news/{{ $item->image }}" sizes="(max-width: 100px) 100vw, 100px" alt="" title="{{ $item->title }}"/>
                                 </a>
                                 </div>
                                 <div class=item-details>
                                     <h3 class="entry-title td-module-title">
-                                        <a href="{{ $item->category->alias }}/{{ $item->id }}/{{ $item->alias }}" title="{{ $item->title }}">{{ $item->title }}</a>
+                                        <a href="{{ $item->category->alias }}/{{ $item->id }}/{{ $item->alias }}.html" title="{{ $item->title }}">{{ $item->title }}</a>
                                     </h3>
                                     <div class=td-module-meta-info>
                                         <span class=td-post-date>
@@ -51,13 +51,13 @@
                         <div class=td-block-span12>
                             <div class="td_module_6 td_module_wrap td-animation-stack">
                                 <div class=td-module-thumb>
-                                    <a href="{{ $item->category->alias }}/{{ $item->id }}/{{ $item->alias }}" title="{{ $item->title }}">
+                                    <a href="{{ $item->category->alias }}/{{ $item->id }}/{{ $item->alias }}.html" title="{{ $item->title }}">
                                         <img width=100 height=70 class="entry-thumb" src="upload/news/{{ $item->image }}" sizes="(max-width: 100px) 100vw, 100px" title="{{ $item->title }}"/>
                                     </a>
                                 </div>
                                 <div class=item-details>
                                     <h3 class="entry-title td-module-title">
-                                        <a href="{{ $item->category->alias }}/{{ $item->id }}/{{ $item->alias }}" title="{{ $item->title }}">{{ $item->title }}
+                                        <a href="{{ $item->category->alias }}/{{ $item->id }}/{{ $item->alias }}.html" title="{{ $item->title }}">{{ $item->title }}
                                         </a>
                                     </h3>
                                     <div class=td-module-meta-info>

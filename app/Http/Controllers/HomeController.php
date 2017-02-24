@@ -61,7 +61,19 @@ class HomeController extends Controller
     }
 
     public function getSearch(Request $request) {
-        $resultSearchs = News::where('title', 'like', '%' . $request->txtSearch . '%')/*->orWhere('name', 'like', '%' . Input::get('name') . '%')*/->paginate(7);
+
+        $resultSearchs = DB::table('news')
+                            ->join('categories', 'categories.id', '=', 'news.category_id')
+                            ->join('cate_groups', 'cate_groups.id', '=', 'categories.cate_group_id')
+                            ->where('news.title', 'like', '%' . $request->txtSearch . '%')
+                            ->orWhere('categories.keywords', 'like', '%' . $request->txtSearch . '%')
+                            ->orWhere('categories.name', 'like', '%' . $request->txtSearch . '%')
+                            ->orWhere('cate_groups.keywords', 'like', '%' . $request->txtSearch . '%')
+                            ->orWhere('cate_groups.name', 'like', '%' . $request->txtSearch . '%')
+                            ->select('news.*', 'categories.alias as cate_alias', 'categories.name as cname')
+                            ->paginate(7);
+
+        
         return view('home.search',['resultSearchs' => $resultSearchs, 'keywords' => $request->txtSearch]);
         
     }

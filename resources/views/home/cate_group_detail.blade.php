@@ -1,8 +1,12 @@
 @extends('home.base.base')
 @section('title')
-    @foreach($groupCates as $item)
-        {{ $item->cgname }}
-    @endforeach
+    <?php 
+        $title;
+        foreach($groupCates as $item)
+            $title = $item->cgname;
+        echo $title;
+    ?>
+    
 @endsection
 
 @section('content')

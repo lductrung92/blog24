@@ -213,7 +213,7 @@
                                                 ->join('categories', 'categories.cate_group_id', '=', 'cate_groups.id')
                                                 ->join('news', 'news.category_id', '=', 'categories.id')
                                                 ->where('cate_groups.name', '=', $cateGName->name)
-                                                ->select('news.*', 'categories.name as cate_name', 'categories.alias as cate_alias')
+                                                ->select('news.*', 'categories.name as cate_name', 'categories.alias as cate_alias', 'categories.name')
                                                 ->orderBy('news.created_at', 'DESC')
                                                 ->skip(0)
                                                 ->take(5)
@@ -222,7 +222,7 @@
                                                 ->join('categories', 'categories.cate_group_id', '=', 'cate_groups.id')
                                                 ->join('news', 'news.category_id', '=', 'categories.id')
                                                 ->where('cate_groups.name', '=', $cateGName->name)
-                                                ->select('news.*', 'categories.name as cate_name', 'categories.alias as cate_alias')
+                                                ->select('news.*', 'categories.name as cate_name', 'categories.alias as cate_alias', 'categories.name')
                                                 ->orderBy('news.created_at', 'DESC')
                                                 ->skip(5)
                                                 ->take(10)
@@ -249,7 +249,7 @@
                                                                                 <div class="td_module_mega_menu td_mod_mega_menu">
                                                                                     <div class=td-module-image>
                                                                                         <div class=td-module-thumb>
-                                                                                            <a href="#" rel=bookmark
+                                                                                            <a href="{{ $item_news->cate_alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel=bookmark
                                                                                                title="{{ $item_news->title }}">
                                                                                                 <img width=218
                                                                                                      height=150
@@ -257,15 +257,15 @@
                                                                                                      src="upload/news/{{ $item_news->image }}"
                                                                                                      sizes="(max-width: 218px) 100vw, 218px"
                                                                                                      alt=""
-                                                                                                     title="#"/>
+                                                                                                     title="{{ $item_news->title }}"/>
                                                                                             </a>
                                                                                         </div>
-                                                                                        <a href="#"
-                                                                                           class=td-post-category>Reviews</a>
+                                                                                        <a href="{{ $item_news->cate_alias }}"
+                                                                                           class=td-post-category>{{ $item_news->name }}</a>
                                                                                     </div>
                                                                                     <div class=item-details>
                                                                                         <h3 class="entry-title td-module-title">
-                                                                                            <a href="#" rel=bookmark
+                                                                                            <a href="{{ $item_news->cate_alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel=bookmark
                                                                                                title="{{ $item_news->title }}">
                                                                                                 {{ $item_news->title }}
                                                                                             </a>
@@ -283,7 +283,7 @@
                                                                                 <div class="td_module_mega_menu td_mod_mega_menu">
                                                                                     <div class=td-module-image>
                                                                                         <div class=td-module-thumb>
-                                                                                            <a href="#" rel=bookmark
+                                                                                            <a href="{{ $item_news->cate_alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel=bookmark
                                                                                                title="{{ $item_news->title }}">
                                                                                                 <img width=218
                                                                                                      height=150
@@ -291,15 +291,15 @@
                                                                                                      src="upload/news/{{ $item_news->image }}"
                                                                                                      sizes="(max-width: 218px) 100vw, 218px"
                                                                                                      alt=""
-                                                                                                     title="#"/>
+                                                                                                     title="{{ $item_news->title }}"/>
                                                                                             </a>
                                                                                         </div>
-                                                                                        <a href="#"
-                                                                                           class=td-post-category>Reviews</a>
+                                                                                        <a href="{{ $item_news->cate_alias }}"
+                                                                                           class=td-post-category>{{ $item_news->name }}</a>
                                                                                     </div>
                                                                                     <div class=item-details>
                                                                                         <h3 class="entry-title td-module-title">
-                                                                                            <a href="#" rel=bookmark
+                                                                                            <a href="{{ $item_news->cate_alias }}/{{ $item->id }}/{{ $item->alias }}.html" rel=bookmark
                                                                                                title="{{ $item_news->title }}">
                                                                                                 {{ $item_news->title }}
                                                                                             </a>

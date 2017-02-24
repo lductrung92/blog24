@@ -7,7 +7,8 @@ use App\Http\Requests\NewsRequest;
 use App\CateGroup;
 use App\Category;
 use App\News;
-
+use Image; 
+use Input;
 class NewsController extends Controller
 {
 	public function getList() {
@@ -34,7 +35,10 @@ class NewsController extends Controller
 		
 		if($request->hasFile('fImage'))
 		{
+			
+			
 			$news->image = moveFile($request, 'fImage', false, null);
+			
 		}else{
 			$news->image = "";
 		}
@@ -77,4 +81,6 @@ class NewsController extends Controller
 		$news->delete();
 		return redirect('admin/news/list')->with(["flash_level" => "success", "flash_message" => "Xóa thành công"]);
 	}
+
+
 }
