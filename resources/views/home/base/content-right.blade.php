@@ -77,7 +77,7 @@
 
         <aside class="td_block_template_1 widget widget_categories">
             <h4 class=block-title>
-                <span>BÀI VIẾT</span>
+                <span>DANH MỤC</span>
             </h4>
             <ul>
                 @foreach($cateGs as $cateG) 
@@ -89,7 +89,7 @@
                     ?>
                     
                 <li class="cat-item cat-item-7">
-                    <a href="{{ $cateG->alias }}/{{ $item->id }}" title="{{ $cateG->name }}">
+                    <a href="group/{{ $cateG->alias }}.html" title="{{ $cateG->name }}">
                         <span style="float: left;top: 8px;" class="glyphicon glyphicon-hand-right"></span>
                         {{ $cateG->name }} ({{ $sum }})
                     </a>

@@ -115,7 +115,7 @@ function moveFile($request, $fileName, $unlink = false, $fileDel)
     if($unlink)
     	unlink("upload/news/" . $fileDel);
     $file->move("upload/news/", $image);
-
+    
     return $image;
 }
 

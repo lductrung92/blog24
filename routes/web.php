@@ -15,8 +15,19 @@ View::share('cateGNames', App\CateGroup::where('status', 0)->get());
 View::share('cateGL', App\CateGroup::where('status', 1)->get());
 View::share('cateGs', App\CateGroup::all());
 
-/*Cong nghe*/
 
+/*menu tat ca lap trinh*/
+View::share('proNews' , DB::table('cate_groups')
+	->join('categories', 'categories.cate_group_id', '=', 'cate_groups.id')
+	->join('news', 'news.category_id', '=', 'categories.id')
+	->where('cate_groups.status', '=', 1)
+	->select('news.*', 'categories.alias as cate_alias', 'categories.name')
+	->get()
+);
+
+
+
+/*Cong nghe*/
 View::share('tnls', App\News::where('category_id', 3)->orderBy('id', 'DESC')->skip(0)->take(3)->get());
 
 /*footer*/
@@ -24,11 +35,15 @@ View::share('newforDates', App\News::orderBy('id', 'DESC')->skip(0)->take(3)->ge
 View::share('enters', \App\News::where('category_id', 4)->orderBy('id', 'DESC')->skip(0)->take(3)->get());
 
 
+
 Route::group(['prefix' => '/'], function() {
 	Route::get('/', ['as' => 'home.base.home', 'uses' => 'HomeController@home']);
 	Route::get('{aliasCate}', 'HomeController@getCate');
 	Route::get('{aliasCate}/{id}/{aliasNew}.html', 'HomeController@details');
+	Route::get('group/{aliasG}.html', 'HomeController@groupDetails');
+
 	Route::get('/ajaxSearch', 'AjaxController@search');
+	Route::get('/search/key', 'HomeController@getSearch');
 });
 
 Route::get('ajax/getNew/{id}', 'AjaxController@getNew');

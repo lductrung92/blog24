@@ -108,15 +108,56 @@
                                                             <a id="{{ $category->name }}" style="cursor: pointer;">
                                                                 {{ $category->name }}
                                                             </a>
-                                                                <script>
-                                                                    jQuery(function ($) {
-                                                                        $("#{{ $category->name }}").click(function () {
-                                                                            $.get('ajax/getNew/{{ $category->id }}', function (data) {
-                                                                                $("#result").html(data);
-                                                                            });
-                                                                        });
-                                                                    });
-                                                                </script>
+                                                    <script>
+                                                        jQuery(function ($) {
+                                                            $("#{{ $category->name }}").click(function () {
+                                                                $.get('ajax/getNew/{{ $category->id }}', function (data) {
+                                                                    $("#result").html(data);
+                                                                     //how much items per page to show
+                                                                    var show_per_page = 4;
+                                                                    //getting the amount of elements inside content div
+                                                                    var number_of_items = jQuery('.content').children().size();
+                                                                    //calculate the number of pages we are going to have
+                                                                    var number_of_pages = Math.ceil(number_of_items/show_per_page);
+
+                                                                    //set the value of our hidden input fields
+                                                                    jQuery('#current_page').val(0);
+                                                                    jQuery('#show_per_page').val(show_per_page);
+
+                                                                    //now when we got all we need for the navigation let's make it '
+
+                                                                    /*
+                                                                    what are we going to have in the navigation?
+                                                                        - link to previous page
+                                                                        - links to specific pages
+                                                                        - link to next page
+                                                                    */
+                                                                    var navigation_html = '<a class="previous_link" href="javascript:previous();"><</a>';
+
+                                                                    navigation_html += '<a class="next_link" href="javascript:next();">></a>';
+
+                                                                    var current_link = 0;
+                                                                    while (number_of_pages > current_link){
+                                                                        navigation_html += '<a class="page_link" style="visibility: hidden" href="javascript:go_to_page(' + current_link +')" longdesc="' + current_link +'">'+ (current_link + 1) +'</a>';
+                                                                        current_link++;
+                                                                    }
+
+                                                                    jQuery('#page_navigation').html(navigation_html);
+
+                                                                    //add active_page class to the first page link
+                                                                    jQuery('#page_navigation .page_link:first').addClass('active_page');
+
+                                                                    //hide all the elements inside content div
+                                                                    jQuery('.content').children().css('display', 'none');
+
+                                                                    //and show the first n (show_per_page) elements
+                                                                    jQuery('.content').children().slice(0, show_per_page).css('display', 'block');
+                                                                });
+
+                                                            });
+
+                                                        });
+                                                    </script>
                                                             @endforeach
                                                         </div>
                                                     </div>
@@ -124,21 +165,22 @@
                                                     <div id="td_uid_1_58ace76cb3183"
                                                          class="td_block_inner td_animated_xlong td_fadeInDown"
                                                          style="height: auto;">
-                                                        <div class="td-mega-row" id="result">
-                                                            @foreach($item->categories as $category)
-                                                                @foreach($category->news as $item_news)
+                                                           
+                                                        
+                                                        <div class="content td-mega-row" id="result">
+                                                                @foreach($proNews as $item_news)
                                                                     <div class="td-mega-span">
                                                                         <div class="td_module_mega_menu td_mod_mega_menu">
                                                                             <div class="td-module-image">
                                                                                 <div class="td-module-thumb">
-                                                                                    <a href="{{ $category->alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html">
+                                                                                    <a href="{{ $item_news->cate_alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html">
                                                                                         <img width="218" height="150" class="entry-thumb" src="upload/news/{{ $item_news->image }}" sizes="(max-width: 218px) 100vw, 218px">
                                                                                     </a>
-                                                                                    <a href="{{ $item_news->category->alias }}" class=td-post-category id="view">{{ $item_news->category->name }}</a>
+                                                                                    <a href="{{ $item_news->cate_alias }}" class=td-post-category id="view">{{ $item_news->name }}</a>
                                                                                 </div>
                                                                                 <div class="item-details">
                                                                                     <h3 class="entry-title td-module-title">
-                                                                                        <a href="{{ $category->alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel="bookmark">
+                                                                                        <a href="{{ $item_news->cate_alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel="bookmark">
                                                                                             {{ $item_news->title }}
                                                                                         </a>
                                                                                     </h3>
@@ -146,14 +188,15 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
                                                                 @endforeach
-                                                            @endforeach
+                                                                
                                                         </div>
+                                                        <div class="td-next-prev-wrap">
+                                                                <input type='hidden' id="current_page" />
+                                                                <input type='hidden' id="show_per_page" />
+                                                                <div id="page_navigation"></div>
+                                                        </div>  
                                                     </div>
-                                                    
-                                                    
-
                                                     
                                                     <div class="clearfix"></div>
                                                 </div>
@@ -165,6 +208,27 @@
                             @endforeach
 
                             @foreach($cateGNames as $cateGName)
+                                <?php 
+                                   $oderNews =  DB::table('cate_groups')
+                                                ->join('categories', 'categories.cate_group_id', '=', 'cate_groups.id')
+                                                ->join('news', 'news.category_id', '=', 'categories.id')
+                                                ->where('cate_groups.name', '=', $cateGName->name)
+                                                ->select('news.*', 'categories.name as cate_name', 'categories.alias as cate_alias')
+                                                ->orderBy('news.created_at', 'DESC')
+                                                ->skip(0)
+                                                ->take(5)
+                                                ->get();
+                                    $oderNews1 =  DB::table('cate_groups')
+                                                ->join('categories', 'categories.cate_group_id', '=', 'cate_groups.id')
+                                                ->join('news', 'news.category_id', '=', 'categories.id')
+                                                ->where('cate_groups.name', '=', $cateGName->name)
+                                                ->select('news.*', 'categories.name as cate_name', 'categories.alias as cate_alias')
+                                                ->orderBy('news.created_at', 'DESC')
+                                                ->skip(5)
+                                                ->take(10)
+                                                ->get();
+                                   
+                                ?>
                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-mega-menu menu-item-144">
                                     <a style="cursor: pointer;">{{ $cateGName->name }}</a>
                                     <ul class=sub-menu>
@@ -177,67 +241,75 @@
                                                             <div id="carousel-example-{{ $cateGName->id }}"
                                                                  class="carousel slide hidden-xs" data-ride="carousel">
                                                                 <div class="carousel-inner">
+                                                               
                                                                     <div class="td-mega-row item active">
-                                                                        @foreach($cateGName->categories as $category)
-                                                                            @foreach($category->news as $item_news)
-                                                                                <div class=td-mega-span>
-                                                                                    <div class="td_module_mega_menu td_mod_mega_menu">
-                                                                                        <div class=td-module-image>
-                                                                                            <div class=td-module-thumb>
-                                                                                                <a href="{{ $category->alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel=bookmark
-                                                                                                   title="{{ $item_news->title }}">
-                                                                                                    <img width=218 height=150 src="upload/news/{{ $item_news->image }}" sizes="(max-width: 218px) 100vw, 218px"
-                                                                                                    title="{{ $item_news->title }}"/>
-                                                                                                </a>
-                                                                                            </div>
-                                                                                            
+                                                                        @foreach($oderNews as $item_news)
+                                                                           
+                                                                            <div class=td-mega-span>
+                                                                                <div class="td_module_mega_menu td_mod_mega_menu">
+                                                                                    <div class=td-module-image>
+                                                                                        <div class=td-module-thumb>
+                                                                                            <a href="#" rel=bookmark
+                                                                                               title="{{ $item_news->title }}">
+                                                                                                <img width=218
+                                                                                                     height=150
+
+                                                                                                     src="upload/news/{{ $item_news->image }}"
+                                                                                                     sizes="(max-width: 218px) 100vw, 218px"
+                                                                                                     alt=""
+                                                                                                     title="#"/>
+                                                                                            </a>
                                                                                         </div>
-                                                                                        <div class=item-details>
-                                                                                            <h3 class="entry-title td-module-title">
-                                                                                                <a href="{{ $category->alias }}/{{ $item_news->id }}/{{ $item_news->alias }}.html" rel=bookmark
-                                                                                                   title="{{ $item_news->title }}">
-                                                                                                    {{ $item_news->title }}
-                                                                                                </a>
-                                                                                            </h3>
-                                                                                        </div>
+                                                                                        <a href="#"
+                                                                                           class=td-post-category>Reviews</a>
+                                                                                    </div>
+                                                                                    <div class=item-details>
+                                                                                        <h3 class="entry-title td-module-title">
+                                                                                            <a href="#" rel=bookmark
+                                                                                               title="{{ $item_news->title }}">
+                                                                                                {{ $item_news->title }}
+                                                                                            </a>
+                                                                                        </h3>
                                                                                     </div>
                                                                                 </div>
-                                                                            @endforeach
+                                                                            </div>
+                                                                           
                                                                         @endforeach
                                                                     </div>
                                                                     <div class="td-mega-row item">
-                                                                        @foreach($cateGName->categories as $category)
-                                                                            @foreach($category->news as $item_news)
-                                                                                <div class=td-mega-span>
-                                                                                    <div class="td_module_mega_menu td_mod_mega_menu">
-                                                                                        <div class=td-module-image>
-                                                                                            <div class=td-module-thumb>
-                                                                                                <a href="#" rel=bookmark
-                                                                                                   title="{{ $item_news->title }}">
-                                                                                                    <img width=218
-                                                                                                         height=150
+                                                                        @foreach($oderNews1 as $item_news)
+                                                                            
+                                                                            <div class=td-mega-span>
+                                                                                <div class="td_module_mega_menu td_mod_mega_menu">
+                                                                                    <div class=td-module-image>
+                                                                                        <div class=td-module-thumb>
+                                                                                            <a href="#" rel=bookmark
+                                                                                               title="{{ $item_news->title }}">
+                                                                                                <img width=218
+                                                                                                     height=150
 
-                                                                                                         src="upload/news/{{ $item_news->image }}"
-                                                                                                         sizes="(max-width: 218px) 100vw, 218px"
-                                                                                                         alt=""
-                                                                                                         title="#"/>
-                                                                                                </a>
-                                                                                            </div>
-                                                                                            <a href="#"
-                                                                                               class=td-post-category>Reviews</a>
+                                                                                                     src="upload/news/{{ $item_news->image }}"
+                                                                                                     sizes="(max-width: 218px) 100vw, 218px"
+                                                                                                     alt=""
+                                                                                                     title="#"/>
+                                                                                            </a>
                                                                                         </div>
-                                                                                        <div class=item-details>
-                                                                                            <h3 class="entry-title td-module-title">
-                                                                                                <a href="#" rel=bookmark
-                                                                                                   title="{{ $item_news->title }}">
-                                                                                                    {{ $item_news->title }}
-                                                                                                </a>
-                                                                                            </h3>
-                                                                                        </div>
+                                                                                        <a href="#"
+                                                                                           class=td-post-category>Reviews</a>
+                                                                                    </div>
+                                                                                    <div class=item-details>
+                                                                                        <h3 class="entry-title td-module-title">
+                                                                                            <a href="#" rel=bookmark
+                                                                                               title="{{ $item_news->title }}">
+                                                                                                {{ $item_news->title }}
+                                                                                            </a>
+                                                                                        </h3>
                                                                                     </div>
                                                                                 </div>
-                                                                            @endforeach
-                                                                        @endforeach
+                                                                            </div>
+                                                                          
+                                                                            
+                                                                        @endforeach    
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -280,11 +352,11 @@
                 <div class=header-search-wrap>
                     <div class="dropdown header-search">
                         <div class=td-drop-down-search aria-labelledby=td-header-search-button>
-                            <form method=get class=td-search-form action="https://demo.tagdiv.com/newspaper_tech/">
+                            <form method="get" class=td-search-form action="search/key">
                                 <div role=search class=td-head-form-search-wrap>
-                                    <input id=td-header-search type=text value="" name=s autocomplete=off/><input
+                                    <input type=text value="" name="txtSearch" autocomplete=off/><input
                                             class="wpb_button wpb_btn-inverse btn" type=submit
-                                            id="td-header-search-top" value=Search>
+                                             value=Search>
                                 </div>
                             </form>
                             <div id=td-aj-search></div>

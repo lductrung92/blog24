@@ -4,7 +4,7 @@
     <title>@yield('title')</title>
     <meta charset=UTF-8/>
     <base href="{{ asset('/') }}"/>
-
+    <link rel="shortcut icon" href="favicon.ico">
     <link rel=stylesheet href='css/style.css' type='text/css'/>
     <!-- Bootstrap Core CSS -->
     <link href="sb-admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,9 +23,12 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="sb-admin/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/home.custom.js"></script>
-    
+    <script src="js/paginate.js"></script>
 </head>
 <body>
+    <?php 
+            $dateSrc = '2005-04-19 12:50 GMT';
+    ?>
     <div class=td-scroll-up>
         <i class=td-icon-menu-up></i>
     </div>
