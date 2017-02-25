@@ -48,8 +48,18 @@ Route::group(['prefix' => '/'], function() {
 
 Route::get('ajax/getNew/{id}', 'AjaxController@getNew');
 
-Route::group(['prefix' => 'admin'], function() {
-	Route::get('dashboard/index', function() {
+
+
+
+Route::get('admin/login', 'LoginController@getLogin');
+Route::get('admin/logout', 'LoginController@logout');
+Route::post('admin/login', 'LoginController@postLogin');
+
+
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function() {
+	Route::get('dashboard', function() {
 		return view('admin.dashboard');
 	});
 
@@ -78,6 +88,15 @@ Route::group(['prefix' => 'admin'], function() {
 		Route::get('update/{id}', ['as' => 'admin.news.getUpdate', 'uses' => 'NewsController@getUpdate']);
 		Route::post('update/{id}', ['as' => 'admin.news.postUpdate', 'uses' => 'NewsController@postUpdate']);
 		Route::get('delete/{id}', ['as' => 'admin.news.getDelete', 'uses' => 'NewsController@getDelete']);
+	});
+
+	Route::group(['prefix' => 'user'], function() {
+		Route::get('list', ['as'=> 'admin.user.getList', 'uses' => 'UserController@getList']);
+		Route::get('insert', ['as' => 'admin.user.getInsert', 'uses' => 'UserController@getInsert']);
+		Route::post('insert', ['as' => 'admin.user.postInsert', 'uses' => 'UserController@postInsert']);
+		Route::get('update/{id}', ['as' => 'admin.user.getUpdate', 'uses' => 'UserController@getUpdate']);
+		Route::post('update/{id}', ['as' => 'admin.user.postUpdate', 'uses' => 'UserController@postUpdate']);
+		Route::get('delete/{id}', ['as' => 'admin.user.getDelete', 'uses' => 'UserController@getDelete']);
 	});
 
 	Route::get('ajax/{id}', 'AjaxController@selCate');

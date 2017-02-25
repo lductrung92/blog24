@@ -1,15 +1,21 @@
-@extends('admin.base.base');
+@extends('admin.base.base')
 
 @section('title')
-	Thêm nhóm sản phẩm
+  Cập nhật nhóm loại tin
+@endsection
+
+@section('css')
+  <link rel="stylesheet" href="bootstrap-select/dist/css/bootstrap-select.min.css" />
 @endsection
 
 @section('content')
-	<div id="page-wrapper">
+  <div id="page-wrapper" style="padding-top: 30px">
+
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Forms</h1>
+                <h1 class="page-header">Cập nhật</h1>
             </div>
+           
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
@@ -17,163 +23,51 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Basic Form Elements
+                        Cập nhật nhóm loại tin
                     </div>
+
+                    {{ showError($errors->all()) }}
+                    
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" action="admin/cate_group/update/{{ $cateG->id }}" method="post">
+                                
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <fieldset>
-                                    <!-- Select Basic -->
+                                    
+
+                                    <!-- Text input-->
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="selectbasic">Titre</label>
+                                        <label class="col-md-4 control-label" for="Nom22">Tên nhóm loại tin</label>  
                                         <div class="col-md-4">
-                                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                                <option value="1">Mademoiselle</option>
-                                                <option value="2">Madame</option>
-                                                <option value="3">Monsieur</option>
-                                            </select>
+                                            <input id="txtName" name="txtName" placeholder="Nhập vào tên nhóm loại tin" class="form-control input-md" required="" value="{{ $cateG->name }}" type="text">
                                         </div>
                                     </div>
-
-                                    <!-- Text input-->
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="Nom22">Nom</label>  
+                                        <label class="col-md-4 control-label" for="Nom22">Keywords</label>  
                                         <div class="col-md-4">
-                                            <input id="Nom22" name="Nom22" placeholder="Nom" class="form-control input-md" required="" type="text">
+                                            <input id="txtKeyWords" name="txtKeyWords" placeholder="Nhập vào keywords" class="form-control input-md" required="" value="{{ $cateG->keywords }}" type="text">
                                         </div>
                                     </div>
-
-                                    <!-- Text input-->
                                     <div class="form-group">
-                                      <label class="col-md-4 control-label" for="Prénom">Prénom</label>  
-                                      <div class="col-md-4">
-                                      <input id="Prénom" name="Prénom" placeholder="Prénom" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
+                                        <label class="col-md-4 control-label" for="Nom22">Description</label>
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" rows="5" id="txtDes" name="txtDes" placeholder="Nhập vào mô tả">{{ $cateG->description }}</textarea>
+                                        </div>
                                     </div>
-
-                                    <!-- Text input-->
                                     <div class="form-group">
-                                      <label class="col-md-4 control-label" for="Ddn">Date de Naissance</label>  
-                                      <div class="col-md-4">
-                                      <input id="Ddn" name="Ddn" placeholder="Date de Naissance" class="form-control input-md" required="" type="text">
-                                      <span class="help-block">format :JJ/MM/YYYY</span>  
-                                      </div>
+                                        <label class="col-md-4 control-label" for="Nom22">Nổi bật</label>
+                                        <div class="col-md-4">
+                                            <input id="input-1" type="checkbox" name="checkStatus">
+                                        </div>
                                     </div>
-
-                                    <!-- Select Basic -->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="EtatC">Etat Civil</label>
-                                      <div class="col-md-4">
-                                        <select id="EtatC" name="EtatC" class="form-control">
-                                          <option value="1">Marié(e)</option>
-                                          <option value="2">Divorcé(e)</option>
-                                          <option value="3">Séparé(e)</option>
-                                          <option value="4">Célibataire</option>
-                                          <option value="5">Veuf(ve)</option>
-                                        </select>
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="rue">Adresse</label>  
-                                      <div class="col-md-4">
-                                      <input id="rue" name="rue" placeholder="Adresse" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="num">N°</label>  
-                                      <div class="col-md-1">
-                                      <input id="num" name="num" placeholder="N°" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="CP">Code Postal</label>  
-                                      <div class="col-md-2">
-                                      <input id="CP" name="CP" placeholder="Code Postal" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="commune">Commune</label>  
-                                      <div class="col-md-4">
-                                      <input id="commune" name="commune" placeholder="Commune" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="mail">Adresse e-mail</label>  
-                                      <div class="col-md-4">
-                                      <input id="mail" name="mail" placeholder="Adresse e-mail" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="tel">Téléphone</label>  
-                                      <div class="col-md-4">
-                                      <input id="tel" name="tel" placeholder="Téléphone" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
-                                    </div>
-
-                                    <!-- Select Basic -->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="typeHypo">Objet du prêt Hypothécaire</label>
-                                      <div class="col-md-4">
-                                        <select id="typeHypo" name="typeHypo" class="form-control">
-                                          <option value="1">Acquisition</option>
-                                          <option value="2">Rénovation</option>
-                                          <option value="3">Refinancement</option>
-                                        </select>
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="revMensNet">Revenus mensuels nets</label>  
-                                      <div class="col-md-4">
-                                      <input id="revMensNet" name="revMensNet" placeholder="Revenus mensuels nets" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="revMensNetP">Revenus mensuels nets partenaire</label>  
-                                      <div class="col-md-4">
-                                      <input id="revMensNetP" name="revMensNetP" placeholder="Revenus mensuels nets partenaire" class="form-control input-md" type="text">
-                                        
-                                      </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="montant">Montant</label>  
-                                      <div class="col-md-4">
-                                      <input id="montant" name="montant" placeholder="Montant" class="form-control input-md" required="" type="text">
-                                        
-                                      </div>
-                                    </div>
-
                                     <!-- Button -->
                                     <div class="form-group">
-                                      <label class="col-md-4 control-label" for="send">Envoyer Demande</label>
+                                      <label class="col-md-4 control-label" for="send"></label>
                                       <div class="col-md-4">
-                                        <button id="send" name="send" class="btn btn-primary">Envoyer</button>
+                                        <button id="insertCate" name="insertCate" class="btn btn-primary">Update</button>
+                                        <button id="reset" name="reset" class="btn btn-default">Reset</button>
                                       </div>
                                     </div>
 
@@ -194,4 +88,15 @@
     </div>
 @endsection
 
+
+@section('script')
+  <script src="bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+  <script src="js/validate.js" type="text/javascript"></script>
+  <script src="bootstrap-checkbox/dist/js/bootstrap-checkbox.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#input-1').checkboxpicker();
+    }); 
+  </script>
+@endsection
 

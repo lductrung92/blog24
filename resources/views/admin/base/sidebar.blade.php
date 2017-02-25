@@ -52,6 +52,18 @@
                 </ul>
             </li>
 
+            <li>
+                <a href="admin/user/list"><i class="glyphicon glyphicon-list"></i> Users<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/user/list"><i class="glyphicon glyphicon-list-alt"></i> List</a>
+                    </li>
+                    <li>
+                        <a href="admin/user/insert"><i class="glyphicon glyphicon-floppy-save  "></i> Insert</a>
+                    </li>
+                </ul>
+            </li>
+
 
 
             <li>

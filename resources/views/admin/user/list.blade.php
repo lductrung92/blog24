@@ -1,7 +1,7 @@
-@extends('admin.base.base');
+@extends('admin.base.base')
 
 @section('title')
-	Danh sách nhóm sản phẩm
+	Danh sách thành viên
 @endsection
 
 @section('css')
@@ -13,10 +13,10 @@
 @endsection
 
 @section('content')
-	<div id="page-wrapper">
+	<div id="page-wrapper" style="padding-top: 30px">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tables</h1>
+                <h1 class="page-header">Danh sách</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -25,28 +25,31 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        DataTables Advanced Tables
+                        Danh sách thành viên
                     </div>
+                    {{ showMessage() }}
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="odd gradeX">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td class="center">4</td>
-                                    <td class="center">X</td>
-                                </tr>
+                                @foreach($users as $user)
+                                    <tr class="odd gradeX">
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->username }}</td>
+                                        <td style="text-align: center; border-right: 0">
+                                            <a href="admin/cate_group/update/{{ $user->id }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="admin/cate_group/delete/{{ $user->id }}" style="color: red"><span class="glyphicon glyphicon-trash"></span></a>
+                                        </td>
+                                      
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- /.table-responsive -->

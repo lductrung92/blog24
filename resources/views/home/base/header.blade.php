@@ -4,24 +4,27 @@
             <div class=td-header-sp-top-menu>
                 <div class=td_data_time>
                     <div>
-                        Sunday, February 19, 2017
+                      {{  sw_get_current_weekday() }}
                     </div>
                 </div>
-                <ul class="top-header-menu td_ul_login">
+                <!-- <ul class="top-header-menu td_ul_login">
                     <li class=menu-item>
                         <a class="td-login-modal-js menu-item" href="#login-form" data-effect=mpf-td-login-effect>Sign
                             in / Join</a>
                     </li>
-                </ul>
+                </ul> -->
                 <div class=menu-top-container>
                     <ul id=menu-top-menu class=top-header-menu>
                         <li id=menu-item-155>
-                            <a href="#">Events</a>
+                            <a href="#">Giới thiệu</a>
+                        </li>
+                        <li id=menu-item-155>
+                            <a href="#">Liên hệ</a>
                         </li>
                     </ul>
                 </div>
             </div>
-
+<!-- 
             {{--Login form--}}
             <div id=login-form class="white-popup-block mfp-hide mfp-with-anim">
                 <div class=td-login-wrap>
@@ -57,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            {{--Login form--}}
+            {{--Login form--}} -->
         </div>
     </div>
     <div class=td-header-menu-wrap-full>
